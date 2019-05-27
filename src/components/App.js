@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import LoadingBar from 'react-redux-loading'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
-import './App.css';
+import PreviewQuestion from './PreviewQuestion'
+import AnswerQuestion from './AnswerQuestion'
+import Login from './Login'
 
 class App extends Component {
 
@@ -13,11 +14,19 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <LoadingBar />
-        HELLO
+        {this.props.loading
+          ? null
+          : <Login />
+        }
       </div>
     )
   }
 }
 
-export default connect()(App)
+function mapStateToProps({questions, users}) {
+  return {
+    loading: questions === null || users === null
+  }
+}
+
+export default connect(mapStateToProps)(App)
