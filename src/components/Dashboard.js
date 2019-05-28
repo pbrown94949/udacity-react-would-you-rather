@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
 import PreviewQuestion from './PreviewQuestion'
 
 class Dashboard extends Component {
@@ -29,13 +28,7 @@ class Dashboard extends Component {
 
   render() {
     const { showAnswered } = this.state
-    const { authedUser, answeredQuestions, unansweredQuestions } = this.props
-    if (authedUser === null) {
-      return (
-        <Redirect to={{
-          pathname: "/login", state: {from: this.props.location}}} />
-      )
-    }
+    const { answeredQuestions, unansweredQuestions } = this.props
     return (
       <div>
         <button onClick={() => this.handleClick(false)}>
@@ -52,19 +45,12 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps({ authedUser, users, questions }) {
-  if (authedUser !== null) {
-    const questionIds = Object.keys(questions)
-    const answeredQuestions = Object.keys(users[authedUser].answers)
-    const unansweredQuestions = questionIds.filter((id) => !answeredQuestions.includes(id))
-    return {
-      authedUser,
-      answeredQuestions,
-      unansweredQuestions
-    }
-  } else {
-    return {
-      authedUser,
-    }
+  const questionIds = Object.keys(questions)
+  const answeredQuestions = Object.keys(users[authedUser].answers)
+  const unansweredQuestions = questionIds.filter((id) => !answeredQuestions.includes(id))
+  return {
+    answeredQuestions,
+    unansweredQuestions
   }
 }
 

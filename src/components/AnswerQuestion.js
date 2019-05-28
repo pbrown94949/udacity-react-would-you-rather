@@ -37,10 +37,10 @@ class AnswerQuestion extends Component {
   }
 
   render() {
-    const { askerId, optionOne, optionTwo } = this.props
+    const { authorId, optionOne, optionTwo } = this.props
     return (
       <div>
-        <Author id={askerId} />
+        <Author id={authorId} />
         <div>
           <form onSubmit={this.handleSubmit}>
             <div>
@@ -59,11 +59,11 @@ class AnswerQuestion extends Component {
 }
 
 function mapStateToProps({ questions, users }, { id }) {
-  const askerId = questions[id].author
+  const authorId = questions[id].author
   const optionOne = questions[id].optionOne.text
   const optionTwo = questions[id].optionTwo.text
   return {
-    askerId,
+    authorId,
     optionOne,
     optionTwo,
   }

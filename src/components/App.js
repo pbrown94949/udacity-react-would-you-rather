@@ -18,20 +18,20 @@ class App extends Component {
   }
 
   render() {
-    const loggedIn = this.props.authedUser !== null
     return (
       <BrowserRouter>
         <div>
           <LoadingBar />
-          {loggedIn ? <Nav /> : null}
           <div>
             {this.props.loading
               ? null
               : <div>
-                  {loggedIn
+                  {this.props.loggedIn
                   ? <div>
+                      <Nav />
                       <Switch>
                         <Route path='/' exact component={Dashboard} />
+                        <Route path='/login' component={Dashboard} />
                         <Route path='/new' component={NewQuestion} />
                         <Route path='/logout'  component={Logout} />
                         <Route path='/questions/:id' component={Question} />
@@ -57,7 +57,7 @@ class App extends Component {
 function mapStateToProps({questions, users, authedUser}) {
   return {
     loading: questions === null || users === null,
-    authedUser,
+    loggedIn: authedUser !== null
   }
 }
 

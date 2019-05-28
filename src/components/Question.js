@@ -3,21 +3,15 @@ import { connect } from 'react-redux'
 import Author from './Author'
 import { Link, withRouter } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
-import ReviewQuestionAndAnswer from './ReviewQuestionAndAnswer'
+import ReviewQuestion from './ReviewQuestion'
 import AnswerQuestion from './AnswerQuestion'
 
 class Question extends Component {
 
   render() {
-    const { authedUser, answered, id } = this.props
-    if (authedUser === null) {
-      return (
-        <Redirect to={{
-          pathname: "/login", state: {from: this.props.location}}} />
-      )
-    }
+    const { answered, id } = this.props
     if (answered) {
-      return <ReviewQuestionAndAnswer id={id} />
+      return <ReviewQuestion id={id} />
     } else {
       return <AnswerQuestion id={id} />
     }
@@ -26,17 +20,11 @@ class Question extends Component {
 
 function mapStateToProps({ authedUser, users, questions }, props) {
   const { id } = props.match.params
-  if (authedUser !== null) {
-    const answered = Object.keys(users[authedUser].answers).includes(id)
-    return {
-      authedUser,
-      answered,
-      id
-    }
-  } else {
-    return {
-      authedUser
-    }
+  const answered = Object.keys(users[authedUser].answers).includes(id)
+  return {
+    authedUser,
+    answered,
+    id
   }
 }
 

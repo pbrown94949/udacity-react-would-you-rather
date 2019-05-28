@@ -6,10 +6,10 @@ import { Link, withRouter } from 'react-router-dom'
 class PreviewQuestion extends Component {
 
   render() {
-    const { askerId, id, previewText } = this.props
+    const { authorId, id, previewText } = this.props
     return (
       <div>
-        <Author id={askerId} />
+        <Author id={authorId} />
         <div>
           {previewText}
         </div>
@@ -22,16 +22,16 @@ class PreviewQuestion extends Component {
 }
 
 function mapStateToProps({ questions, users }, { id }) {
-  const askerId = questions[id].author
+  const authorId = questions[id].author
   const previewText = textToPreview(questions[id])
   return {
-    askerId,
+    authorId,
     previewText,
   }
 }
 
 function textToPreview(question) {
-  const fullText = 'Would you rather ' + question.optionOne.text + ' or ' + question.optionTwo.text
+  const fullText = 'Would you rather ' + question.optionOne.text + ' or ' + question.optionTwo.text + '?'
   return fullText.substring(0, 30) + '...'
 }
 
