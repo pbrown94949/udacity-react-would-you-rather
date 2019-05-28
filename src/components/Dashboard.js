@@ -14,10 +14,10 @@ class Dashboard extends Component {
     }))
   }
 
-  previewQuestionList = (ids) => {
+  previewQuestionList = (questionIds) => {
     return (
       <ul>
-        {ids.map((id) =>
+        {questionIds.map((id) =>
           <li key={id}>
             <PreviewQuestion id={id} />
           </li>
@@ -45,9 +45,9 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps({ authedUser, users, questions }) {
-  const questionIds = Object.keys(questions)
+  const allQuestionIds = Object.keys(questions)
   const answeredQuestions = Object.keys(users[authedUser].answers)
-  const unansweredQuestions = questionIds.filter((id) => !answeredQuestions.includes(id))
+  const unansweredQuestions = allQuestionIds.filter((id) => !answeredQuestions.includes(id))
   return {
     answeredQuestions,
     unansweredQuestions
