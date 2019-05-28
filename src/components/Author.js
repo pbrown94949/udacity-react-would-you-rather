@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-class Asker extends Component {
+class Author extends Component {
   render() {
-    const { name, url } = this.props
+    const { name, avatarURL } = this.props
     return (
       <div>
         {name} Asks
         <br />
         <img
-          src={url}
+          src={avatarURL}
           alt={`Avatar of ${name}`}
           className='avatar' >
         </img>
@@ -21,8 +21,8 @@ class Asker extends Component {
 function mapStateToProps({ users }, { id }) {
   return {
     name: users[id].name,
-    url: users[id].avatarURL
+    avatarURL: users[id].avatarURL
   }
 }
 
-export default connect(mapStateToProps)(Asker)
+export default connect(mapStateToProps)(Author)

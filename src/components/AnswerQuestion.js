@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Asker from './Asker'
+import Author from './Author'
 
 class AnswerQuestion extends Component {
 
@@ -40,7 +40,7 @@ class AnswerQuestion extends Component {
     const { askerId, optionOne, optionTwo } = this.props
     return (
       <div>
-        <Asker id={askerId} />
+        <Author id={askerId} />
         <div>
           <form onSubmit={this.handleSubmit}>
             <div>
@@ -57,7 +57,6 @@ class AnswerQuestion extends Component {
     )
   }
 }
-
 
 function mapStateToProps({ questions, users }, { id }) {
   const askerId = questions[id].author

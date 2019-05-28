@@ -1,19 +1,21 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Asker from './Asker'
+import Author from './Author'
+import { Link, withRouter } from 'react-router-dom'
 
 class PreviewQuestion extends Component {
+
   render() {
-    const { id, askerId, previewText } = this.props
+    const { askerId, id, previewText } = this.props
     return (
       <div>
-        <Asker id={askerId} />
+        <Author id={askerId} />
         <div>
-          Would you rather {previewText}
+          {previewText}
         </div>
-        <button>
+        <Link to={`/questions/${id}`}>
           View Full Question
-        </button>
+        </Link>
       </div>
     )
   }
@@ -21,15 +23,16 @@ class PreviewQuestion extends Component {
 
 function mapStateToProps({ questions, users }, { id }) {
   const askerId = questions[id].author
-  const previewText = textToPreview(questions[id].optionOne.text)
+  const previewText = textToPreview(questions[id])
   return {
     askerId,
     previewText,
   }
 }
 
-function textToPreview(text) {
-  return text.split(' ')[0].concat('...')
+function textToPreview(question) {
+  const fullText = 'Would you rather ' + question.optionOne.text + ' or ' + question.optionTwo.text
+  return fullText.substring(0, 30) + '...'
 }
 
 export default connect(mapStateToProps)(PreviewQuestion)
