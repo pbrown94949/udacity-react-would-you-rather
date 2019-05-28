@@ -32,7 +32,11 @@ function mapStateToProps({ questions, users }, { id }) {
 
 function textToPreview(question) {
   const fullText = 'Would you rather ' + question.optionOne.text + ' or ' + question.optionTwo.text + '?'
-  return fullText.substring(0, 30) + '...'
+  if (fullText.length < 30) {
+    return fullText
+  } else {
+    return fullText.substring(0, 30) + '...'
+  }
 }
 
 export default connect(mapStateToProps)(PreviewQuestion)
