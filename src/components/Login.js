@@ -47,13 +47,7 @@ function mapStateToProps({ users }) {
       value: users[user].id,
       label: users[user].name
     }
-  }).sort((a, b) => {
-    if (a.label < b.label)
-      return -1
-    if (a.label > b.label)
-      return 1
-    return 0
-  })
+  }).sort((a, b) => a.label > b.label ? 1 : a.label < b.label ? -1 : 0)
   return {
     loginOptions
   }
