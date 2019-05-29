@@ -1,16 +1,9 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading'
 import { handleInitialData } from '../actions/shared'
-import NewQuestion from './NewQuestion'
-import Logout from './Logout'
-import Dashboard from './Dashboard'
-import Nav from './Nav'
-import Login from './Login'
-import Question from './Question'
-import NoMatch from './NoMatch'
-import LeaderBoard from './LeaderBoard'
+import LoggedOutApp from './LoggedOutApp'
+import LoggedInApp from './LoggedInApp'
 
 class App extends Component {
 
@@ -20,47 +13,31 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <div>
+        <LoadingBar />
         <div>
-          <LoadingBar />
-          <div>
-            {this.props.loading
-              ? null
-              : <div>
-                  {this.props.loggedIn
-                  ? <div>
-                      <Nav />
-                      <Switch>
-                        <Route path='/' exact component={Dashboard} />
-                        <Route path='/login' component={Dashboard} />
-                        <Route path='/new' component={NewQuestion} />
-                        <Route path='/leaderboard' component={LeaderBoard} />
-                        <Route path='/logout'  component={Logout} />
-                        <Route path='/questions/:id' component={Question} />
-                        <Route component={NoMatch}  />
-                      </Switch>
-                    </div>
-                  : <div>
-                      <Switch>
-                        <Route path='/logout'  component={Logout} />
-                        <Route component={Login}  />
-                      </Switch>
-                    </div>
-                  }
-                </div>
-            }
-          </div>
+          {this.props.loading
+            ? null
+            : this.props.loggedIn
+              ? <LoggedInApp />
+              : <LoggedOutApp />
+          }
         </div>
-      </BrowserRouter>
+      </div>
     )
   }
 }
 
 function mapStateToProps({questions, users, authedUser}) {
+  const loading = isEmpty(questions) || isEmpty(users)
   return {
-    loading: questions === null || users === null,
+    loading,
     loggedIn: authedUser !== null
   }
+}
+
+function isEmpty(obj) {
+  return obj === null || Object.keys(obj).length === 0
 }
 
 export default connect(mapStateToProps)(App)

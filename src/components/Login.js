@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 import Select from 'react-select'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
 import { loginUser } from '../actions/authedUser'
 
 class Login extends Component {
 
   state = {
-    selectedLogin: '',
-    redirectToReferrer: false,
+    selectedLogin: ''
   }
 
   handleChange = (selectedLogin) => {
@@ -20,18 +18,14 @@ class Login extends Component {
     const { dispatch } = this.props
     const selectedLoginId = this.state.selectedLogin.value
     dispatch(loginUser(selectedLoginId))
-    this.setState({redirectToReferrer: true})
   }
 
   render() {
-    let { from } = this.props.location.state || { from: { pathname: "/" } }
     const { loginOptions } = this.props
-    const { selectedLogin, redirectToReferrer } = this.state
-    if (redirectToReferrer) {
-      return <Redirect to={from} />
-    }
+    const { selectedLogin } = this.state
     return (
       <div>
+        <br />
         <form onSubmit={this.handleSubmit}>
           <Select
             options={loginOptions}

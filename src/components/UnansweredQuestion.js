@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Author from './Author'
+import { handleAnswerQuestion } from '../actions/questions'
 
-class AnswerQuestion extends Component {
+class UnansweredQuestion extends Component {
 
   state = {
     selectedOption: ''
@@ -17,7 +18,12 @@ class AnswerQuestion extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    console.log(this.state)
+    const { dispatch, id } = this.props
+    const { selectedOption } = this.state
+    dispatch(handleAnswerQuestion({
+      qid: id,
+      answer: selectedOption,
+    }))
   }
 
   radioButton = (value, label) => {
@@ -69,4 +75,4 @@ function mapStateToProps({ questions, users }, { id }) {
   }
 }
 
-export default connect(mapStateToProps)(AnswerQuestion)
+export default connect(mapStateToProps)(UnansweredQuestion)
