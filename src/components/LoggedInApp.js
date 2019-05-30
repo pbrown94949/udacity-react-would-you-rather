@@ -17,7 +17,7 @@ class LoggedInApp extends Component {
         <Switch>
           <Route path='/' exact component={Dashboard} />
           <Route path='/login' component={Dashboard} />
-          <Route path='/new' component={NewQuestion} />
+          <Route path='/add' component={NewQuestion} />
           <Route path='/leaderboard' component={LeaderBoard} />
           <Route path='/logout'  component={Logout} />
           <Route path='/questions/:id' component={Question} />

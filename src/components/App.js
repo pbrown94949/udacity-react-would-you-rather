@@ -15,7 +15,7 @@ class App extends Component {
     return (
       <div>
         <LoadingBar />
-        <div>
+        <div className='container'>
           {this.props.loading
             ? null
             : this.props.loggedIn

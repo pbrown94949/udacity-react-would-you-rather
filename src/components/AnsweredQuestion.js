@@ -1,28 +1,34 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Author from './Author'
+import AuthorAvatar from './AuthorAvatar'
+import AnsweredQuestionAnswer from './AnsweredQuestionAnswer'
 
 class AnsweredQuestion extends Component {
   render() {
     const {
       authorId,
+      authorName,
       optionOne,
       optionTwo,
       totalVotes,
     } = this.props
     return (
-      <div>
-        <div>
-          <Author id={authorId} />
+      <div className='answered-question'>
+        <div className='header'>
+          {authorName} asked:
         </div>
-        <div>
-          {optionOne.text} {optionOne.votes} out of {totalVotes} {optionOne.votedFor ? '*' : ''}
-        </div>
-        <div>
-          {optionTwo.text} {optionTwo.votes} out of {totalVotes} {optionTwo.votedFor ? '*' : ''}
-        </div>
-        <div>
-          *Indicates the option you voted for.
+        <AuthorAvatar id={authorId} className='avatar'/>
+        <div className='results'>
+          <AnsweredQuestionAnswer
+            text={optionOne.text}
+            votes={optionOne.votes}
+            totalVotes={totalVotes}
+            votedFor={optionOne.votedFor}/>
+          <AnsweredQuestionAnswer
+            text={optionTwo.text}
+            votes={optionTwo.votes}
+            totalVotes={totalVotes}
+            votedFor={optionTwo.votedFor}/>
         </div>
       </div>
     )
@@ -31,11 +37,13 @@ class AnsweredQuestion extends Component {
 
 function mapStateToProps({ authedUser, questions, users }, { id }) {
   const authorId = questions[id].author
+  const authorName = users[authorId].name
   const optionOne = formatOptionForProps(authedUser, questions[id].optionOne)
   const optionTwo = formatOptionForProps(authedUser, questions[id].optionTwo)
   const totalVotes = optionOne.votes + optionTwo.votes
   return {
     authorId,
+    authorName,
     totalVotes,
     optionOne,
     optionTwo,

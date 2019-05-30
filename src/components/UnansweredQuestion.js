@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Author from './Author'
+import AuthorAvatar from './AuthorAvatar'
 import { handleAnswerQuestion } from '../actions/questions'
 
 class UnansweredQuestion extends Component {
@@ -43,22 +43,23 @@ class UnansweredQuestion extends Component {
   }
 
   render() {
-    const { authorId, optionOne, optionTwo } = this.props
+    const { authorId, authorName, optionOne, optionTwo } = this.props
     return (
-      <div>
-        <Author id={authorId} />
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <div>
-              Would you rather
-            </div>
-            {this.radioButton("optionOne", optionOne)}
-            {this.radioButton("optionTwo", optionTwo)}
-            <div>
-              <input type="submit" value="Submit" />
-            </div>
-          </form>
+      <div className='unanswered-question'>
+        <div className='header'>
+          {authorName} asks:
         </div>
+        <AuthorAvatar id={authorId} className='avatar'/>
+        <form onSubmit={this.handleSubmit} className='form'>
+          <div>
+            Would you rather...
+          </div>
+          {this.radioButton("optionOne", optionOne)}
+          {this.radioButton("optionTwo", optionTwo)}
+          <div>
+            <input type="submit" value="Submit" />
+          </div>
+        </form>
       </div>
     )
   }
@@ -66,10 +67,12 @@ class UnansweredQuestion extends Component {
 
 function mapStateToProps({ questions, users }, { id }) {
   const authorId = questions[id].author
+  const authorName = users[authorId].name
   const optionOne = questions[id].optionOne.text
   const optionTwo = questions[id].optionTwo.text
   return {
     authorId,
+    authorName,
     optionOne,
     optionTwo,
   }

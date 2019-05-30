@@ -3,3 +3,115 @@
   border-radius: 25px;
   margin: 10px;
 }
+
+.small-avatar {
+  height: 25px;
+  border-radius: 12px;
+  margin: 1px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  text-decoration: none;
+}
+
+.nav li:first-child {
+  padding-left: 0;
+}
+
+.nav li:last-child {
+  border: 2px solid green;
+}
+
+ul {
+  padding-left: 0;
+}
+
+li {
+  list-style-type: none;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.active {
+  font-weight: bold;
+}
+
+.preview-question {
+  display: grid;
+  grid-template-areas: "a a a a"
+                       "b c c c"
+                       "b d d d";
+}
+
+.preview-question .header {
+  grid-area: a;
+}
+
+.preview-question .avatar {
+  grid-area: b;
+}
+
+.preview-question .text {
+  grid-area: c;
+}
+
+.preview-question .link {
+  grid-area: d;
+}
+
+.unanswered-question {
+  display: grid;
+  grid-template-areas: "a a a a"
+                       "b c c c"
+                       "b c c c"
+}
+
+.unanswered-question .header {
+  grid-area: a;
+}
+
+.unanswered-question .avatar {
+  grid-area: b
+}
+
+.unanswered-question .form {
+  grid-area: c
+}
+
+.answered-question {
+  display: grid;
+  grid-template-areas: "a a a a"
+                       "b c c c"
+                       "b c c c";
+}
+
+.answered-question .header {
+  grid-area: a;
+}
+
+.answered-question .avatar {
+  grid-area: b
+}
+
+.answered-question .results {
+  grid-area: c
+}
+
+.answered-question-answer-yes {
+  margin: 20px;
+  border: 10px solid yellow;
+}
+
+.answered-question-answer-no {
+  margin: 20px;
+  border: 10px solid white;
+}

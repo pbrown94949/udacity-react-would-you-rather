@@ -26,19 +26,21 @@ class NewQuestion extends Component {
   render() {
     const {one, two} = this.state
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div>Would you rather</div>
-        <input value={one} onChange={(e) => this.handleChange(e, "one")} />
-        <div>or</div>
-        <input value={two} onChange={(e) => this.handleChange(e, "two")} />
-        <div>
-          <button
-            type='submit'
-            disabled={one === '' || two === ''}>
-            Submit
-          </button>
-        </div>
-      </form>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <div>Would you rather</div>
+          <input value={one} onChange={(e) => this.handleChange(e, "one")} />
+          <div>or</div>
+          <input value={two} onChange={(e) => this.handleChange(e, "two")} />
+          <div>
+            <button
+              type='submit'
+              disabled={one === '' || two === ''}>
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
     )
   }
 }
