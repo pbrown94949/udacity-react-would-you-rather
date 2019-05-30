@@ -4,7 +4,6 @@ import LeaderBoardEntry from './LeaderBoardEntry'
 
 class LeaderBoard extends Component {
   render() {
-    console.log(this.props.topUsers)
     return (
       <div>
         <ul>

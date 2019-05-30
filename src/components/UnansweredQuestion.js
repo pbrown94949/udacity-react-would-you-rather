@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import AuthorAvatar from './AuthorAvatar'
+import Avatar from './Avatar'
 import { handleAnswerQuestion } from '../actions/questions'
 
 class UnansweredQuestion extends Component {
@@ -49,7 +49,7 @@ class UnansweredQuestion extends Component {
         <div className='header'>
           {authorName} asks:
         </div>
-        <AuthorAvatar id={authorId} className='avatar'/>
+        <Avatar id={authorId} className='avatar'/>
         <form onSubmit={this.handleSubmit} className='form'>
           <div>
             Would you rather...

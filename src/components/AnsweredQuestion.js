@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import AuthorAvatar from './AuthorAvatar'
+import Avatar from './Avatar'
 import AnsweredQuestionAnswer from './AnsweredQuestionAnswer'
 
 class AnsweredQuestion extends Component {
@@ -17,7 +17,7 @@ class AnsweredQuestion extends Component {
         <div className='header'>
           {authorName} asked:
         </div>
-        <AuthorAvatar id={authorId} className='avatar'/>
+        <Avatar id={authorId} className='avatar'/>
         <div className='results'>
           <AnsweredQuestionAnswer
             text={optionOne.text}

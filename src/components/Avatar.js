@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-class AuthorAvatar extends Component {
+class Avatar extends Component {
   render() {
-    const { name, avatarURL } = this.props
+    const { avatarURL, name, small } = this.props
     return (
       <img
         src={avatarURL}
         alt={`Avatar of ${name}`}
-        className='avatar' >
+        className={small ? 'avatar-small' : 'avatar'} >
       </img>
     )
   }
@@ -21,4 +21,4 @@ function mapStateToProps({ users }, { id }) {
   }
 }
 
-export default connect(mapStateToProps)(AuthorAvatar)
+export default connect(mapStateToProps)(Avatar)

@@ -1,25 +1,31 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Avatar from './Avatar'
 
 class LeaderBoardEntry extends Component {
   render() {
-    const { name, answers, questions, score, medal } = this.props
+    const { answers, id, medal, name, questions, score } = this.props
     return (
-      <div>
-        <div>
-          {name}
+      <div className='leader-board-entry'>
+        <Avatar id={id} className='avatar' />
+        <div className='middle'>
+          <div>
+            {name}
+          </div>
+          <div>
+            Answered questions: {answers}
+          </div>
+          <div>
+            Created questions: {questions}
+          </div>
         </div>
-        <div>
-          {answers}
-        </div>
-        <div>
-          {questions}
-        </div>
-        <div>
-          {score}
-        </div>
-        <div>
-          {medal}
+        <div className='total'>
+          <div>
+            Score
+          </div>
+          <div>
+            {score}
+          </div>
         </div>
       </div>
     )

@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import Avatar from './Avatar'
 
 class Nav extends Component {
 
   render() {
-    const { name, avatarURL} = this.props
+    const { authedUser, name } = this.props
     return (
       <nav className='nav'>
         <ul>
@@ -28,11 +29,7 @@ class Nav extends Component {
             Hello {name}
           </li>
           <li>
-            <img
-              src={avatarURL}
-              alt={`Avatar of ${name}`}
-              className='small-avatar' >
-            </img>
+            <Avatar id={authedUser} small={true} />
           </li>
           <li>
             <NavLink to='/logout' exact activeClassName='active'>
@@ -46,9 +43,10 @@ class Nav extends Component {
 }
 
 function mapStateToProps({users, authedUser}) {
+  const name = users[authedUser].name
   return {
-    name: users[authedUser].name,
-    avatarURL: users[authedUser].avatarURL,
+    authedUser,
+    name,
   }
 }
 

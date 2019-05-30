@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import AuthorAvatar from './AuthorAvatar'
+import Avatar from './Avatar'
 import { Link } from 'react-router-dom'
 
 class PreviewQuestion extends Component {
@@ -12,7 +12,7 @@ class PreviewQuestion extends Component {
         <div className='header'>
           {authorName} asks:
         </div>
-        <AuthorAvatar id={authorId} className='avatar'/>
+        <Avatar id={authorId} className='avatar'/>
         <div className='text'>
           {previewText}
         </div>
