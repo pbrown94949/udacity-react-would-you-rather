@@ -45,7 +45,14 @@ li {
   font-weight: bold;
 }
 
+.border {
+  border: 2px solid black;
+  padding: 2px;
+}
+
 .preview-question {
+  border: 2px solid black;
+  padding: 2px;
   display: grid;
   grid-template-areas: "a a a a"
                        "b c c c"
@@ -69,6 +76,8 @@ li {
 }
 
 .unanswered-question {
+  border: 2px solid black;
+  padding: 2px;
   display: grid;
   grid-template-areas: "a a a a"
                        "b c c c"
@@ -88,6 +97,8 @@ li {
 }
 
 .answered-question {
+  border: 2px solid black;
+  padding: 2px;
   display: grid;
   grid-template-areas: "a a a a"
                        "b c c c"
@@ -117,6 +128,7 @@ li {
 }
 
 .leader-board-entry {
+  border: 2px solid black;
   display: grid;
   grid-template-areas: "a b c"
 }
@@ -131,4 +143,9 @@ li {
 
 .leader-board-entry .total {
   grid-area: c
+}
+
+.add-question {
+  border: 2px solid black;
+  padding: 2px;
 }

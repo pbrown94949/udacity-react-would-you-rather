@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleAddQuestion } from '../actions/questions'
 
-class NewQuestion extends Component {
+class AddQuestion extends Component {
   state = {
     one: '',
     two: '',
@@ -26,7 +26,7 @@ class NewQuestion extends Component {
   render() {
     const {one, two} = this.state
     return (
-      <div>
+      <div className='add-question'>
         <form onSubmit={this.handleSubmit}>
           <div>Would you rather</div>
           <input value={one} onChange={(e) => this.handleChange(e, "one")} />
@@ -45,4 +45,4 @@ class NewQuestion extends Component {
   }
 }
 
-export default connect()(NewQuestion)
+export default connect()(AddQuestion)

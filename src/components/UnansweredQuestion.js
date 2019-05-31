@@ -57,7 +57,11 @@ class UnansweredQuestion extends Component {
           {this.radioButton("optionOne", optionOne)}
           {this.radioButton("optionTwo", optionTwo)}
           <div>
-            <input type="submit" value="Submit" />
+            <input
+              type="submit"
+              value="Submit"
+              disabled={this.state.selectedOption === '' ? 'disabled' : ''}
+            />
           </div>
         </form>
       </div>

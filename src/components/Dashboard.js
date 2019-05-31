@@ -14,7 +14,14 @@ class Dashboard extends Component {
     }))
   }
 
-  previewQuestionList = (questionIds) => {
+  previewQuestionList = (questionIds, answered) => {
+    if (questionIds.length < 1) {
+      return (
+        <div className='border'>
+          No {answered ? ' answered ' : ' unanswered'} questions found.
+        </div>
+      )
+    }
     return (
       <ul>
         {questionIds.map((id) =>
@@ -30,15 +37,15 @@ class Dashboard extends Component {
     const { showAnswered } = this.state
     const { answeredQuestions, unansweredQuestions } = this.props
     return (
-      <div>
+      <div className='dashboard'>
         <button onClick={() => this.handleClick(false)}>
           Unanswered
         </button>
         <button onClick={() => this.handleClick(true)}>
           Answered
         </button>
-        {showAnswered && this.previewQuestionList(answeredQuestions)}
-        {!showAnswered && this.previewQuestionList(unansweredQuestions)}
+        {showAnswered && this.previewQuestionList(answeredQuestions, true)}
+        {!showAnswered && this.previewQuestionList(unansweredQuestions, false)}
       </div>
     )
   }

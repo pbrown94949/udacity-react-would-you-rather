@@ -27,10 +27,15 @@ class AnsweredQuestionAnswer extends Component {
           strokeColor={strokeColor}
           trailWidth="3"
           trailColor={GREY}
-          />
+        />
         <div>
           {votes} out of {totalVotes} votes.
         </div>
+        {votedFor &&
+          <div className='your-vote'>
+            <br />
+            Your vote!
+          </div>}
       </div>
     )
   }

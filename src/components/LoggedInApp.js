@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import NewQuestion from './NewQuestion'
+import AddQuestion from './AddQuestion'
 import Logout from './Logout'
 import Dashboard from './Dashboard'
 import Nav from './Nav'
@@ -17,7 +17,7 @@ class LoggedInApp extends Component {
         <Switch>
           <Route path='/' exact component={Dashboard} />
           <Route path='/login' component={Dashboard} />
-          <Route path='/add' component={NewQuestion} />
+          <Route path='/add' component={AddQuestion} />
           <Route path='/leaderboard' component={LeaderBoard} />
           <Route path='/logout'  component={Logout} />
           <Route path='/questions/:id' component={Question} />
