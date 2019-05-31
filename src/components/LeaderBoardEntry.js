@@ -4,7 +4,7 @@ import Avatar from './Avatar'
 
 class LeaderBoardEntry extends Component {
   render() {
-    const { answers, id, medal, name, questions, score } = this.props
+    const { answers, id, name, questions, score } = this.props
     return (
       <div className='leader-board-entry'>
         <Avatar id={id} className='avatar' />
@@ -37,14 +37,12 @@ function mapStateToProps({ users }, { id, rank }) {
   const answers = Object.keys(user.answers).length
   const questions = user.questions.length
   const score = answers + questions
-  const medal = rank === 0 ? "Gold" : rank === 1 ? "Silver" : rank === 2 ? "Bronze" : ""
   return {
     name: user.name,
     avatarURL: user.avatarURL,
     answers,
     questions,
     score,
-    medal
   }
 }
 
