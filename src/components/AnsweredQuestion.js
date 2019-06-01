@@ -29,13 +29,12 @@ class AnsweredQuestion extends Component {
 
 function mapStateToProps({ authedUser, questions, users }, { id }) {
   const authorId = questions[id].author
-  const authorName = users[authorId].name
   const optionOne = formatOptionForProps(authedUser, questions[id].optionOne)
   const optionTwo = formatOptionForProps(authedUser, questions[id].optionTwo)
   const totalVotes = optionOne.votes + optionTwo.votes
   return {
     authorId,
-    authorName,
+    authorName: users[authorId].name,
     totalVotes,
     optionOne,
     optionTwo,

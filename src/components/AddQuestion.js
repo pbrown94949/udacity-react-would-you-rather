@@ -18,11 +18,9 @@ class AddQuestion extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const { dispatch } = this.props
-    dispatch(handleAddQuestion({
-      optionOneText: this.state.one,
-      optionTwoText: this.state.two,
-    }))
+    const { addQuestion } = this.props
+    const { one, two } = this.state
+    addQuestion(one, two)
     this.setState({
       submitted: true,
     })
@@ -53,4 +51,15 @@ class AddQuestion extends Component {
   }
 }
 
-export default connect()(AddQuestion)
+function mapDispatchToProps(dispatch) {
+  return {
+    addQuestion: (optionOneText, optionTwoText) => {
+      dispatch(handleAddQuestion({
+        optionOneText,
+        optionTwoText,
+      }))
+    },
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AddQuestion)

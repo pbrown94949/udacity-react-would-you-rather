@@ -6,7 +6,7 @@ import { logoutUser } from '../actions/authedUser'
 class Logout extends Component {
 
   componentDidMount() {
-    this.props.dispatch(logoutUser())
+    this.props.logout()
   }
 
   render() {
@@ -18,4 +18,12 @@ class Logout extends Component {
   }
 }
 
-export default connect()(Logout)
+function mapDispatchToProps(dispatch) {
+  return {
+    logout: () => {
+      dispatch(logoutUser())
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Logout)

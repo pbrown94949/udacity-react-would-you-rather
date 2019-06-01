@@ -29,11 +29,10 @@ function mapStateToProps({ authedUser, users, questions }, { showAnswered }) {
   const answeredIds = Object.keys(users[authedUser].answers)
   const unansweredIds = Object.keys(questions)
                           .filter((id) => !answeredIds.includes(id))
-  const questionIds = showAnswered
-                      ? sort(answeredIds, questions)
-                      : sort(unansweredIds, questions)
   return {
-    questionIds,
+    questionIds: showAnswered
+                  ? sort(answeredIds, questions)
+                  : sort(unansweredIds, questions)
   }
 }
 

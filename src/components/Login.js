@@ -50,9 +50,8 @@ function mapStateToProps({ authedUser, users }) {
       label: users[user].name
     }
   }).sort((a, b) => a.label.localeCompare(b.label))
-  const loggedIn = authedUser !== null
   return {
-    loggedIn,
+    loggedIn: authedUser !== null,
     loginOptions,
   }
 }

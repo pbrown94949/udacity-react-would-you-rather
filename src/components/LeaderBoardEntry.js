@@ -36,13 +36,12 @@ function mapStateToProps({ users }, { id, rank }) {
   const user = users[id]
   const answers = Object.keys(user.answers).length
   const questions = user.questions.length
-  const score = answers + questions
   return {
     name: user.name,
     avatarURL: user.avatarURL,
     answers,
     questions,
-    score,
+    score: answers + questions,
   }
 }
 

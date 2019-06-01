@@ -18,12 +18,9 @@ class UnansweredQuestion extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const { dispatch, id } = this.props
+    const { answerQuestion, id } = this.props
     const { selectedOption } = this.state
-    dispatch(handleAnswerQuestion({
-      qid: id,
-      answer: selectedOption,
-    }))
+    answerQuestion(id, selectedOption)
   }
 
   radioButton = (value, label) => {
@@ -71,15 +68,23 @@ class UnansweredQuestion extends Component {
 
 function mapStateToProps({ questions, users }, { id }) {
   const authorId = questions[id].author
-  const authorName = users[authorId].name
-  const optionOne = questions[id].optionOne.text
-  const optionTwo = questions[id].optionTwo.text
   return {
     authorId,
-    authorName,
-    optionOne,
-    optionTwo,
+    authorName: users[authorId].name,
+    optionOne: questions[id].optionOne.text,
+    optionTwo: questions[id].optionTwo.text
   }
 }
 
-export default connect(mapStateToProps)(UnansweredQuestion)
+function mapDispatchToProps(dispatch) {
+  return {
+    answerQuestion: (qid, answer) => {
+      dispatch(handleAnswerQuestion({
+        qid,
+        answer,
+      }))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UnansweredQuestion)

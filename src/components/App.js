@@ -46,9 +46,8 @@ class App extends Component {
 }
 
 function mapStateToProps({questions, users, authedUser}) {
-  const loading = isEmpty(questions) || isEmpty(users)
   return {
-    loading,
+    loading: isEmpty(questions) || isEmpty(users),
   }
 }
 

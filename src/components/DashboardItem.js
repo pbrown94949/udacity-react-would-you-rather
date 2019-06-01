@@ -27,12 +27,10 @@ class DashboardItem extends Component {
 
 function mapStateToProps({ questions, users }, { id }) {
   const authorId = questions[id].author
-  const authorName = users[authorId].name
-  const previewText = textToPreview(questions[id])
   return {
     authorId,
-    authorName,
-    previewText,
+    authorName: users[authorId].name,
+    previewText: textToPreview(questions[id]),
   }
 }
 
