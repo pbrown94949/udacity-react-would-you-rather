@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import DashboardItem from './DashboardItem'
 
 class DashboardList extends Component {
-
   render() {
     const { questionIds, showAnswered } = this.props
     if (questionIds.length < 1) {

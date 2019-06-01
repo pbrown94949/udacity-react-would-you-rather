@@ -1,44 +1,25 @@
-import React, { Component } from 'react'
-import { Line } from 'rc-progress'
+import React from 'react'
+import AnsweredQuestionProgressBar from './AnsweredQuestionProgressBar'
 
-const GREEN = "#6ef442"
-const GREY = "#c7ccc5"
-
-class AnsweredQuestionAnswer extends Component {
-  render() {
-    const { option, totalVotes } = this.props
-    const { text, votedFor, votes  } = option
-    let votePercent = ( votes / totalVotes) * 100
-    let strokeColor = GREEN
-    // Ugh, this progress bar always displays a bit of strokeColor.
-    // So if we are at 0 percent, just display a bar that is 100% grey.
-    if (votePercent === 0) {
-      votePercent = 100
-      strokeColor = GREY
-    }
-    return (
-      <div className={votedFor ? 'answered-question-answer-yes' : 'answered-question-answer-no'}>
-        <div>
-          Would you rather {text}?
-        </div>
-        <Line percent={votePercent}
-          strokeLinecap="square"
-          strokeWidth="3"
-          strokeColor={strokeColor}
-          trailWidth="3"
-          trailColor={GREY}
-        />
-        <div>
-          {votes} out of {totalVotes} votes.
-        </div>
-        {votedFor &&
-          <div className='your-vote'>
-            <br />
-            Your vote!
-          </div>}
+const AnsweredQuestionAnswer = ({ option, totalVotes }) => {
+  const { text, votedFor, votes } = option
+  const votePercent = ( votes / totalVotes) * 100
+  return (
+    <div className={votedFor ? 'answered-question-answer-yes' : 'answered-question-answer-no'}>
+      <div>
+        Would you rather {text}?
       </div>
-    )
-  }
+      <AnsweredQuestionProgressBar votePercent={votePercent} />
+      <div>
+        {votes} out of {totalVotes} votes.
+      </div>
+      {votedFor &&
+        <div className='your-vote'>
+          <br />
+          Your vote!
+        </div>}
+    </div>
+  )
 }
 
 export default AnsweredQuestionAnswer

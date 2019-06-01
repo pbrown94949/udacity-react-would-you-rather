@@ -33,7 +33,7 @@ class App extends Component {
                   <PrivateRoute path='/add' component={AddQuestion} />
                   <PrivateRoute path='/leaderboard' component={LeaderBoard} />
                   <PrivateRoute path='/questions/:id' component={Question} />
-                  <Route path ='/login' component={Login}  />
+                  <Route path ='/login' component={Login} />
                   <Route path='/logout'  component={Logout} />
                   <PrivateRoute component={NoMatch}  />
                 </Switch>

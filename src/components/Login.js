@@ -16,13 +16,13 @@ class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const { dispatch } = this.props
-    const selectedLoginId = this.state.selectedLogin.value
-    dispatch(loginUser(selectedLoginId))
+    const { login } = this.props
+    const id = this.state.selectedLogin.value
+    login(id)
   }
 
   render() {
-    let { from } = this.props.location.state || { from: { pathname: "/" } };
+    const { from } = this.props.location.state || { from: { pathname: "/" } };
     const { loggedIn, loginOptions } = this.props
     const { selectedLogin } = this.state
     if (loggedIn) {
@@ -56,4 +56,12 @@ function mapStateToProps({ authedUser, users }) {
   }
 }
 
-export default connect(mapStateToProps)(Login)
+function mapDispatchToProps(dispatch) {
+  return {
+    login: (id) => {
+      dispatch(loginUser(id))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
