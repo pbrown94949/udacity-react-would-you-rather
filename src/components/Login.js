@@ -23,26 +23,22 @@ class Login extends Component {
 
   render() {
     let { from } = this.props.location.state || { from: { pathname: "/" } };
-    console.log(from)
     const { loggedIn, loginOptions } = this.props
     const { selectedLogin } = this.state
     if (loggedIn) {
       return <Redirect to={from} />
     }
     return (
-      <div>
-        <br />
-        <form onSubmit={this.handleSubmit}>
-          <Select
-            options={loginOptions}
-            onChange={this.handleChange}/>
-          <button
-            type='submit'
-            disabled={selectedLogin === ''}>
-            Login
-          </button>
-        </form>
-      </div>
+      <form onSubmit={this.handleSubmit}>
+        <Select
+          options={loginOptions}
+          onChange={this.handleChange}/>
+        <button
+          type='submit'
+          disabled={selectedLogin === ''}>
+          Login
+        </button>
+      </form>
     )
   }
 }
@@ -53,7 +49,7 @@ function mapStateToProps({ authedUser, users }) {
       value: users[user].id,
       label: users[user].name
     }
-  }).sort((a, b) => a.label > b.label ? 1 : a.label < b.label ? -1 : 0)
+  }).sort((a, b) => a.label.localeCompare(b.label))
   const loggedIn = authedUser !== null
   return {
     loggedIn,

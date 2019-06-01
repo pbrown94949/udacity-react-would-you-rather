@@ -11,7 +11,7 @@ class Logout extends Component {
 
   render() {
     return (
-      <div>
+      <div className='border'>
         Click <Link to="/login">here</Link> to login.
       </div>
     )
