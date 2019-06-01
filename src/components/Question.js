@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import UnansweredQuestion from './UnansweredQuestion'
 import AnsweredQuestion from './AnsweredQuestion'
+import NoMatch from './NoMatch'
+import UnansweredQuestion from './UnansweredQuestion'
 
 class Question extends Component {
 
   render() {
-    const { answered, id } = this.props
-    if (answered) {
+    const { answered, exists, id } = this.props
+    if (!exists) {
+      return <NoMatch />
+    } else if (answered) {
       return <AnsweredQuestion id={id} />
     } else {
       return <UnansweredQuestion id={id} />
@@ -17,10 +20,12 @@ class Question extends Component {
 
 function mapStateToProps({ authedUser, users, questions }, props) {
   const { id } = props.match.params
+  const exists = Object.keys(questions).includes(id)
   const answered = Object.keys(users[authedUser].answers).includes(id)
   return {
     answered,
-    id
+    exists,
+    id,
   }
 }
 
