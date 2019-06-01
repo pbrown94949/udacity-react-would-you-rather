@@ -2,8 +2,8 @@
 
 This project implements a "Would You Rather" application.
 It collects questions from users in the form of "would you rather A or B?".
-Once collected, the question is made to be answered by all users.
-As users answer, their votes are stored and tabulated.
+Once collected, the question is presenting to all users for voting.
+As users respond, their votes are stored and tabulated.
 Users can view the voting results on questions they have already voted on.
 Users can also view a Leader Board which shows the top three users based on
 questions asked and answered.
