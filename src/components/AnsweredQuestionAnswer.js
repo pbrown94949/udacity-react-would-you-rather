@@ -6,7 +6,8 @@ const GREY = "#c7ccc5"
 
 class AnsweredQuestionAnswer extends Component {
   render() {
-    const { text, totalVotes, votedFor, votes  } = this.props
+    const { option, totalVotes } = this.props
+    const { text, votedFor, votes  } = option
     let votePercent = ( votes / totalVotes) * 100
     let strokeColor = GREEN
     // Ugh, this progress bar always displays a bit of strokeColor.

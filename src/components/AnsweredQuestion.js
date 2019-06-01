@@ -19,16 +19,8 @@ class AnsweredQuestion extends Component {
         </div>
         <Avatar id={authorId} className='avatar' />
         <div className='results'>
-          <AnsweredQuestionAnswer
-            text={optionOne.text}
-            votes={optionOne.votes}
-            totalVotes={totalVotes}
-            votedFor={optionOne.votedFor}/>
-          <AnsweredQuestionAnswer
-            text={optionTwo.text}
-            votes={optionTwo.votes}
-            totalVotes={totalVotes}
-            votedFor={optionTwo.votedFor}/>
+          <AnsweredQuestionAnswer option={optionOne} totalVotes={totalVotes}/>
+          <AnsweredQuestionAnswer option={optionTwo} totalVotes={totalVotes}/>
         </div>
       </div>
     )

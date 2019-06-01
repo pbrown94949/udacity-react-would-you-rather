@@ -20,12 +20,7 @@ class LeaderBoard extends Component {
 
 function mapStateToProps({ users }) {
   const topUsers = Object.keys(users)
-    .sort((a, b) => {
-      const scoreA = score(users[a])
-      const scoreB = score(users[b])
-      return scoreA > scoreB ? 1 : scoreA < scoreB ? -1 : 0
-    })
-    .reverse()
+    .sort((a, b) => score(users[b]) - score(users[a]))
     .slice(0, 3)
   return {
     topUsers,
