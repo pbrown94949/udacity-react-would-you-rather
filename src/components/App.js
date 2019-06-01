@@ -1,9 +1,17 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading'
+import { Route, BrowserRouter, Switch } from 'react-router-dom'
 import { handleInitialData } from '../actions/shared'
-import LoggedOutApp from './LoggedOutApp'
-import LoggedInApp from './LoggedInApp'
+import PrivateRoute from './PrivateRoute'
+import Dashboard from './Dashboard'
+import Login from './Login'
+import Nav from './Nav'
+import Question from './Question'
+import NoMatch from './NoMatch'
+import LeaderBoard from './LeaderBoard'
+import AddQuestion from './AddQuestion'
+import Logout from './Logout'
 
 class App extends Component {
 
@@ -13,17 +21,26 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         <LoadingBar />
         <div className='container'>
           {this.props.loading
             ? null
-            : this.props.loggedIn
-              ? <LoggedInApp />
-              : <LoggedOutApp />
+            : <BrowserRouter>
+                <Nav />
+                <Switch>
+                  <PrivateRoute path='/' exact component={Dashboard} />
+                  <PrivateRoute path='/add' component={AddQuestion} />
+                  <PrivateRoute path='/leaderboard' component={LeaderBoard} />
+                  <PrivateRoute path='/questions/:id' component={Question} />
+                  <Route path ='/login' component={Login}  />
+                  <Route path='/logout'  component={Logout} />
+                  <PrivateRoute component={NoMatch}  />
+                </Switch>
+              </BrowserRouter>
           }
         </div>
-      </div>
+      </Fragment>
     )
   }
 }
@@ -32,7 +49,6 @@ function mapStateToProps({questions, users, authedUser}) {
   const loading = isEmpty(questions) || isEmpty(users)
   return {
     loading,
-    loggedIn: authedUser !== null
   }
 }
 

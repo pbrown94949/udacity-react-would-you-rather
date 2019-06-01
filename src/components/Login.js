@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Select from 'react-select'
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { loginUser } from '../actions/authedUser'
 
@@ -21,8 +22,13 @@ class Login extends Component {
   }
 
   render() {
-    const { loginOptions } = this.props
+    let { from } = this.props.location.state || { from: { pathname: "/" } };
+    console.log(from)
+    const { loggedIn, loginOptions } = this.props
     const { selectedLogin } = this.state
+    if (loggedIn) {
+      return <Redirect to={from} />
+    }
     return (
       <div>
         <br />
@@ -41,15 +47,17 @@ class Login extends Component {
   }
 }
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ authedUser, users }) {
   const loginOptions = Object.keys(users).map((user) => {
     return {
       value: users[user].id,
       label: users[user].name
     }
   }).sort((a, b) => a.label > b.label ? 1 : a.label < b.label ? -1 : 0)
+  const loggedIn = authedUser !== null
   return {
-    loginOptions
+    loggedIn,
+    loginOptions,
   }
 }
 

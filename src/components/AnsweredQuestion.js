@@ -17,7 +17,7 @@ class AnsweredQuestion extends Component {
         <div className='header'>
           {authorName} asked:
         </div>
-        <Avatar id={authorId} className='avatar'/>
+        <Avatar id={authorId} className='avatar' />
         <div className='results'>
           <AnsweredQuestionAnswer
             text={optionOne.text}

@@ -15,7 +15,6 @@ class AnsweredQuestionAnswer extends Component {
       votePercent = 100
       strokeColor = GREY
     }
-    console.log(votePercent)
     return (
       <div className={votedFor ? 'answered-question-answer-yes' : 'answered-question-answer-no'}>
         <div>

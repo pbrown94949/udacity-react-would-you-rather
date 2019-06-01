@@ -50,7 +50,7 @@ li {
   padding: 2px;
 }
 
-.preview-question {
+.dashboard-item {
   border: 2px solid black;
   padding: 2px;
   display: grid;
