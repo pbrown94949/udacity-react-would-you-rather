@@ -3,14 +3,15 @@ import { connect } from 'react-redux'
 import Avatar from './Avatar'
 import { Link } from 'react-router-dom'
 
-class PreviewQuestion extends Component {
+class DashboardItem extends Component {
 
   render() {
     const { authorId, authorName, id, previewText } = this.props
     return (
-      <div className='preview-question'>
+      <div className='dashboard-item'>
         <div className='header'>
           {authorName} asks:
+          <br />
         </div>
         <Avatar id={authorId} className='avatar'/>
         <div className='text'>
@@ -44,4 +45,4 @@ function textToPreview(question) {
   }
 }
 
-export default connect(mapStateToProps)(PreviewQuestion)
+export default connect(mapStateToProps)(DashboardItem)

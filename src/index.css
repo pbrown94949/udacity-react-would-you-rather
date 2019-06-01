@@ -59,19 +59,19 @@ li {
                        "b d d d";
 }
 
-.preview-question .header {
+.dashboard-item .header {
   grid-area: a;
 }
 
-.preview-question .avatar {
+.dashboard-item .avatar {
   grid-area: b;
 }
 
-.preview-question .text {
+.dashboard-item .text {
   grid-area: c;
 }
 
-.preview-question .link {
+.dashboard-item .link {
   grid-area: d;
 }
 

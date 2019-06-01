@@ -1,5 +1,3 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Project Description
 
 This project implements a "Would You Rather" application.
@@ -8,7 +6,7 @@ Once collected, the question is made to be answered by all users.
 As users answer, their votes are stored and tabulated.
 Users can view the voting results on questions they have already voted on.
 Users can also view a Leader Board which shows the top three users based on
-questions asked and answered. 
+questions asked and answered.
 
 ## Available Scripts
 
